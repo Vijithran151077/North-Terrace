@@ -7,7 +7,7 @@ import {
 
 // Replace with your actual Google Apps Script Web App URL
 // Replace with your NEW Google Apps Script Web App URL after redeployment
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwEW7aNh6g1OH_6HkdvbTQxJRdwhzIqLXnGLUY1gcupCoJK-dd-pvCeJRyhq-pVM6n6PA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCULAGQvdgGfwNxXwW4hDeQvV0d-EUYyrd6L0tkR86rfrFG-UADgPVCXKW1JPpYNVm/exec';
 
 // Test function to check if data exists in sheets with very broad date range
 export const testDataExists = async () => {
