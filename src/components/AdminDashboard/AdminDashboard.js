@@ -327,16 +327,12 @@ const AdminDashboard = () => {
         const hours = empData?.hours || 0;
         const status = empData?.status || '';
 
-        // Format: "12.0h (COMPLETED)" or "0" for no hours
-        if (hours > 0) {
-          row.push(`"${hours.toFixed(1)}h (${status})"`);
-        } else {
-          row.push('0');
-        }
+        // Format: plain number with 2 decimal places
+        row.push(hours.toFixed(2));
       });
 
       // Add day total
-      row.push(`${(dayData?.dayTotal || 0).toFixed(1)}h`);
+      row.push((dayData?.dayTotal || 0).toFixed(2));
 
       rows.push(row.join(','));
     });
@@ -349,7 +345,7 @@ const AdminDashboard = () => {
         const empData = calendarData.calendar[dateKey]?.employees?.[empName];
         return sum + (empData?.hours || 0);
       }, 0) || 0;
-      summaryRow.push(`${empTotal.toFixed(1)}h`);
+      summaryRow.push(empTotal.toFixed(2));
     });
 
     // Grand total
@@ -357,7 +353,7 @@ const AdminDashboard = () => {
       const dateKey = date.toISOString().split('T')[0];
       return sum + (calendarData.calendar[dateKey]?.dayTotal || 0);
     }, 0) || 0;
-    summaryRow.push(`${grandTotal.toFixed(1)}h`);
+    summaryRow.push(grandTotal.toFixed(2));
 
     rows.push(summaryRow.join(','));
 
@@ -4090,7 +4086,7 @@ const AdminDashboard = () => {
                                     <td key={empName} className="text-center">
                                       {hours > 0 ? (
                                         <span className={badgeClass} title={`Status: ${status}`}>
-                                          {hours.toFixed(1)}h
+                                          {hours.toFixed(2)}
                                         </span>
                                       ) : (
                                         <span className="text-muted">-</span>
@@ -4101,7 +4097,7 @@ const AdminDashboard = () => {
                                 <td className="text-center bg-light">
                                   {dayData?.dayTotal > 0 ? (
                                     <strong className="text-primary">
-                                      {dayData.dayTotal.toFixed(1)}h
+                                      {dayData.dayTotal.toFixed(2)}
                                     </strong>
                                   ) : (
                                     <span className="text-muted">-</span>
@@ -4125,10 +4121,10 @@ const AdminDashboard = () => {
                                 <td key={empName} className="text-center fw-bold">
                                   {empTotal > 0 ? (
                                     <span className="text-primary">
-                                      {empTotal.toFixed(1)}h
+                                      {empTotal.toFixed(2)}
                                     </span>
                                   ) : (
-                                    <span className="text-muted">0h</span>
+                                    <span className="text-muted">0.00</span>
                                   )}
                                 </td>
                               );
@@ -4137,7 +4133,7 @@ const AdminDashboard = () => {
                               {calendarData.dates?.reduce((sum, date) => {
                                 const dateKey = date.toISOString().split('T')[0];
                                 return sum + (calendarData.calendar[dateKey]?.dayTotal || 0);
-                              }, 0).toFixed(1) || '0.0'}h
+                              }, 0).toFixed(2) || '0.00'}
                             </td>
                           </tr>
                         </tbody>
